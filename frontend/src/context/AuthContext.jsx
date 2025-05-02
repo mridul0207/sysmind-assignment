@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const { data } = await axios.post('http://localhost:5000/api/users/login', {
+      const { data } = await axios.post('https://sysmind-assignment-frontend.vercel.app/api/users/login', {
         email,
         password,
       });
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const { data } = await axios.post('http://localhost:5000/api/users', {
+      const { data } = await axios.post('https://sysmind-assignment-frontend.vercel.app/api/users', {
         username,
         email,
         password,
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       if (user && user._id) {
-        await axios.post('http://localhost:5000/api/users/logout');
+        await axios.post('https://sysmind-assignment-frontend.vercel.app/api/users/logout');
       }
       setUser(null);
       localStorage.removeItem('user');

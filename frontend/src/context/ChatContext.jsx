@@ -27,7 +27,7 @@ export const ChatProvider = ({ children }) => {
   // Initialize socket connection
   useEffect(() => {
     if (user) {
-      const newSocket = io('http://localhost:5000');
+      const newSocket = io('https://sysmind-assignment-frontend.vercel.app');
       setSocket(newSocket);
 
       return () => {
@@ -97,7 +97,7 @@ export const ChatProvider = ({ children }) => {
     
     try {
       setLoadingRooms(true);
-      const { data } = await axios.get('http://localhost:5000/api/rooms');
+      const { data } = await axios.get('https://sysmind-assignment-frontend.vercel.app/api/rooms');
       setRooms(data);
     } catch (error) {
       console.error('Error fetching rooms:', error);
@@ -112,7 +112,7 @@ export const ChatProvider = ({ children }) => {
     
     try {
       setLoadingMessages(true);
-      const { data } = await axios.get(`http://localhost:5000/api/messages/${roomId}`);
+      const { data } = await axios.get(`https://sysmind-assignment-frontend.vercel.app/api/messages/${roomId}`);
       setMessages(data);
     } catch (error) {
       console.error('Error fetching messages:', error);
@@ -126,7 +126,7 @@ export const ChatProvider = ({ children }) => {
     if (!user || !socket) return;
     
     try {
-      const { data } = await axios.post('http://localhost:5000/api/messages', {
+      const { data } = await axios.post('https://sysmind-assignment-frontend.vercel.app/api/messages', {
         content,
         roomId,
       });
@@ -151,7 +151,7 @@ export const ChatProvider = ({ children }) => {
     if (!user) throw new Error('User not authenticated');
     
     try {
-      const { data } = await axios.post('http://localhost:5000/api/rooms', { userId });
+      const { data } = await axios.post('https://sysmind-assignment-frontend.vercel.app/api/rooms', { userId });
       
       // Update rooms list
       await fetchRooms();
@@ -168,7 +168,7 @@ export const ChatProvider = ({ children }) => {
     if (!user) throw new Error('User not authenticated');
     
     try {
-      const { data } = await axios.post('http://localhost:5000/api/rooms/group', {
+      const { data } = await axios.post('https://sysmind-assignment-frontend.vercel.app/api/rooms/group', {
         name,
         users: JSON.stringify(users),
       });
